@@ -1,0 +1,635 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: black;
+  background: linear-gradient(to right, #ffffff, #f5f5f5, #dcdcdc, #b0b0b0);
+}
+
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2rem);
+}
+
+h1, h2, h3 {
+  font-weight: 300;
+  letter-spacing: clamp(1px, 0.3vw, 3px);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn {
+  display: inline-block;
+  padding: clamp(0.8rem, 2vw, 1rem) clamp(2rem, 5vw, 3rem);
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  border-radius: 50px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  transition: all 0.3s ease;
+  min-height: 44px;
+}
+
+.btn:hover {
+  background: #000;
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+nav {
+  background: #000;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  border-bottom: 2px solid #fff;
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.3);
+}
+
+nav .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+nav .logo {
+  color: #fff;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  transition: 0.3s;
+}
+nav .logo:hover {
+  color: #888;
+  transform: scale(1.05);
+}
+
+nav ul {
+  display: flex;
+  gap: clamp(1rem, 2vw, 2rem);
+  list-style: none;
+  transition: right 0.4s ease;
+}
+
+nav ul li a {
+  color: #fff;
+  font-weight: 500;
+  position: relative;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+nav ul li a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #fff;
+  transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+#menu-toggle {
+  display: none;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  width: 30px;
+  height: 22px;
+  gap: 5px;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+
+#menu-toggle:checked + .hamburger span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+#menu-toggle:checked + .hamburger span:nth-child(2) {
+  opacity: 0;
+}
+#menu-toggle:checked + .hamburger span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+    z-index: 1001;
+  }
+
+  nav ul {
+    flex-direction: column;
+    background: #000;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: 70%;
+    max-width: 300px;
+    padding: 6rem 2rem 2rem;
+    border-left: 2px solid #fff;
+    box-shadow: -6px 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  #menu-toggle:checked ~ ul {
+    right: 0;
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul li a {
+    font-size: 1.1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #333;
+  }
+
+  nav ul li a::after {
+    display: none;
+  }
+}
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600&display=swap');
+
+.hero {
+  min-height: 100vh;
+  height: auto;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('https://images.unsplash.com/photo-1551632811-561732d1e306?w=1600&h=900&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  border-radius: clamp(15px, 3vw, 30px);
+  margin: clamp(1rem, 2vw, 2rem);
+  padding: 2rem 1rem;
+  animation: fadeIn 2s ease;
+}
+
+.hero-content h1 {
+  font-size: clamp(2rem, 8vw, 4rem);
+  margin-bottom: 1rem;
+  letter-spacing: clamp(2px, 1vw, 5px);
+}
+
+.hero-content p {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  margin-bottom: 2rem;
+  letter-spacing: clamp(1px, 0.5vw, 2px);
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+.portfolio-hero {
+  margin-top: 80px;
+  min-height: 80vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('https://images.unsplash.com/photo-1484406566174-9da000fda645?w=1600&fit=crop');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-align: center;
+  border-radius: 0 0 30px 30px;
+}
+
+.portfolio-hero .overlay h1 {
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  letter-spacing: 3px;
+  margin-bottom: 0.8rem;
+}
+.portfolio-hero .overlay p {
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  color: #ddd;
+}
+
+.portfolio-gallery {
+  margin-top: clamp(3rem, 6vw, 5rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
+  gap: clamp(1rem, 2vw, 1.5rem);
+}
+
+.gallery-item {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  border-radius: 25px;
+  overflow: hidden;
+  height: clamp(250px, 40vw, 380px);
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+}
+
+
+
+.portfolio-cta {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600&fit=crop');
+  background-size: cover;
+  background-position: center;
+  padding: clamp(4rem, 8vw, 6rem) 1rem;
+  text-align: center;
+  color: #fff;
+}
+
+.portfolio-cta .overlay {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  padding: clamp(2rem, 4vw, 3rem);
+  display: inline-block;
+}
+
+.portfolio-cta h2 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .portfolio-hero {
+    border-radius: 0;
+  }
+  .gallery-item {
+    height: 250px;
+  }
+  
+}
+
+
+.services-hero {
+  min-height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+              url('https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=1600&h=900&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 2rem 1rem;
+}
+
+.services-hero .overlay {
+  max-width: 800px;
+  padding: 2rem;
+}
+
+.services-hero h1 {
+  font-size: clamp(1.8rem, 6vw, 3rem);
+  letter-spacing: clamp(1px, 0.5vw, 3px);
+  margin-bottom: 1rem;
+}
+
+.services-hero p {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  letter-spacing: 1px;
+  color: #ddd;
+}
+
+.service-section {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 2rem 1rem;
+}
+
+.service-section .overlay {
+  background: rgba(0, 0, 0, 0.6);
+  padding: clamp(2rem, 4vw, 3rem);
+  border-radius: 25px;
+  max-width: 700px;
+  animation: fadeIn 1.2s ease;
+}
+
+.service-section h2 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: 1.5rem;
+  letter-spacing: clamp(1px, 0.5vw, 3px);
+}
+
+.service-section p {
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  color: #f0f0f0;
+}
+
+
+.service-section .price {
+  display: inline-block;
+  font-weight: bold;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+  border: 2px solid #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  margin-bottom: 2rem;
+}
+
+.service-section .btn,
+.book-cta .btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: clamp(0.8rem, 2vw, 1rem) clamp(2rem, 5vw, 3rem);
+  background: #fff;
+  color: #000;
+  border: 2px solid #fff;
+  border-radius: 50px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-height: 44px;
+}
+
+.service-section .btn:hover,
+.book-cta .btn:hover {
+  background: transparent;
+  color: #fff;
+  border-color: #fff;
+  transform: translateY(-3px);
+}
+
+
+.book-cta {
+  min-height: 80vh;
+  background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+              url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1600&h=900&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  padding: 2rem 1rem;
+}
+
+.book-cta .overlay {
+  background: rgba(0, 0, 0, 0.5);
+  padding: clamp(2rem, 5vw, 4rem);
+  border-radius: 25px;
+}
+
+.book-cta h2 {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  margin-bottom: 2rem;
+}
+
+.user-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  padding: clamp(1rem, 3vw, 2rem);
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+              url('https://images.unsplash.com/photo-1518098268026-4e89f1a2cd8e?w=1600&h=900&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-attachment: scroll;
+}
+
+.user-page-box {
+  margin-top: clamp(50px, 10vw, 80px);
+  background: rgba(255, 255, 255, 0.95);
+  padding: clamp(2rem, 4vw, 3rem);
+  border: 3px solid #000;
+  border-radius: 30px;
+  width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 1.2s ease;
+}
+
+.user-page-box h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.form-group input {
+  width: 100%;
+  padding: clamp(0.8rem, 2vw, 1rem);
+  border: 2px solid #000;
+  border-radius: 15px;
+  background: #fff;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  transition: all 0.3s ease;
+  min-height: 44px;
+}
+
+.form-group input:focus {
+  outline: none;
+  background: #f8f8f8;
+  border-color: #555;
+}
+
+.btn-full {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.page-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+.page-link a {
+  color: #000;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+
+footer {
+  background: #000;
+  color: white;
+  text-align: center;
+  padding: clamp(1.5rem, 3vw, 2rem) 0;
+  margin-top: clamp(2rem, 5vw, 4rem);
+  border-top: 3px solid #000;
+  box-shadow: 0 -3px 20px rgba(0, 0, 0, 0.3);
+}
+
+footer p {
+  font-size: clamp(0.8rem, 2vw, 1rem);
+}
+
+@media (max-width: 1024px) {
+  .hero,
+  .services-hero,
+  .service-section,
+  .book-cta {
+    background-attachment: scroll !important;
+  }
+}
+
+
+
+@media (max-width: 480px) {
+  .hero {
+    border-radius: 15px;
+    margin: 1rem 0.5rem;
+  }
+
+
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .gallery-item {
+    height: 250px;
+  }
+
+  
+
+  .user-page-box {
+    padding: 1.5rem;
+  }
+
+  .service-section .overlay {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 360px) {
+  nav .logo {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+}
+
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero,
+  .services-hero,
+  .service-section {
+    min-height: auto;
+    padding: 3rem 1rem;
+  }
+  
+  .portfolio-hero {
+    padding: 2rem 1rem;
+    min-height: auto; 
+  }
+}
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1600px;
+  }
+}
+
+@media print {
+  nav,
+  footer,
+  .btn {
+    display: none;
+  }
+
+  body {
+    background: white;
+  }
+
+  .hero,
+  .portfolio-hero, 
+  .services-hero {
+    break-inside: avoid;
+  }
+}
